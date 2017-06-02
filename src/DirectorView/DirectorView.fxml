@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DirectorView.DirectorViewController">
+    <tabs>
+        <Tab text = "Работники" onSelectionChanged="#onSelectionWT">
+            <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                <items>
+                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                        <children>
+                            <TextField fx:id="wo_lname" promptText="Фамилия"/>
+                            <TextField fx:id="wo_fname" promptText="Имя"/>
+                            <TextField fx:id="wo_mname" promptText="Отчество"/>
+                            <TextField fx:id="wo_sex" promptText="Пол"/>
+                            <ComboBox fx:id = "wo_position" promptText="Должность"/>
+                            <Button mnemonicParsing="false" onAction="#wo_onClickAdd" text="Добавить работника" />
+                            <Button mnemonicParsing="false" onAction="#wo_onClickChange" text="Изменить работника" />
+                            <Button mnemonicParsing="false" onAction="#wo_onClickDelete" text="Удалить работника" />
+                        </children>
+                        <padding>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                    </VBox>
+                    <TableView fx:id="wo_table" editable="true" onMouseClicked="#wo_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                        <columns>
+                            <!--<TableColumn fx:id="wo_id_T" prefWidth="75.0" text="№" />-->
+                            <TableColumn fx:id="wo_lname_T" prefWidth="75.0" text="Фамилия" />
+                            <TableColumn fx:id="wo_fname_T" prefWidth="75.0" text="Имя" />
+                            <TableColumn fx:id="wo_mname_T" prefWidth="75.0" text="Отчество" />
+                            <TableColumn fx:id="wo_sex_T" prefWidth="75.0" text="Пол"/>
+                            <TableColumn fx:id="wo_position_T" prefWidth="75.0" text="Должность"/>
+                        </columns>
+                    </TableView>
+                </items>
+            </SplitPane>
+        </Tab>
+        <Tab text="Дома и связанное с ними" onSelectionChanged="#onSelectionHouT">
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                <children>
+                    <ComboBox fx:id = "_hs_choose" promptText="Выберите интересующий вас дом"/>
+                    <Button onAction="#_hs_click" text="Выбрать дом"/>
+                    <Accordion>
+                        <panes>
+                            <TitledPane animated="false" text="Все дома">
+                                <content>
+                                    <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                        <items>
+                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                                <children>
+                                                    <TextField fx:id="_hs_name" promptText="Адрес" />
+                                                    <Button mnemonicParsing="false" onAction="#_hs_onClickAdd" text="Добавить дом" />
+                                                    <Button mnemonicParsing="false" onAction="#_hs_onClickChange" text="Изменить дом" />
+                                                    <Button mnemonicParsing="false" onAction="#_hs_onClickDelete" text="Удалить дом" />
+                                                </children>
+                                                <padding>
+                                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                </padding>
+                                            </VBox>
+                                            <TableView fx:id="_hs_table" editable="true" onMouseClicked="#_hs_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                                                <columns>
+                                                    <!--<TableColumn fx:id="_hs_id_T" prefWidth="75.0" text="№" />-->
+                                                    <TableColumn fx:id="_hs_name_T" prefWidth="322.0" text="Адрес" />
+                                                </columns>
+                                            </TableView>
+                                        </items>
+                                    </SplitPane>
+                                </content>
+                            </TitledPane>
+                            <TitledPane animated="false" text = "Осмотры выбранного дома">
+                                <SplitPane dividerPositions="0.5" prefHeight="260.0" prefWidth="200.0">
+                                    <items>
+                                        <VBox prefHeight="260.0" prefWidth="100.0" spacing="5.0">
+                                            <children>
+                                                <TextField fx:id="_hov_rating" promptText="Рейтинг"/>
+                                                <DatePicker fx:id="_hov_date" promptText="Дата осмотра"/>
+                                                <ComboBox fx:id = "_hov_house" promptText="Дом"/>
+                                                <ComboBox fx:id = "_hov_worker" promptText="Работник"/>
+                                                <Button mnemonicParsing="false" onAction="#_hov_onClickAdd" text="Добавить осмотр" />
+                                                <Button mnemonicParsing="false" onAction="#_hov_onClickChange" text="Изменить осмотр" />
+                                                <Button mnemonicParsing="false" onAction="#_hov_onClickDelete" text="Удалить осмотр" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </VBox>
+                                        <TableView fx:id="_hov_table" editable="true" onMouseClicked="#_hov_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                                <!--<TableColumn fx:id="_hov_id_T" prefWidth="75.0" text="№" />-->
+                                                <TableColumn fx:id="_hov_rating_T" prefWidth="75.0" text="Рейтинг" />
+                                                <TableColumn fx:id="_hov_date_T" prefWidth="75.0" text="Дата осмотра" />
+                                                <TableColumn fx:id="_hov_house_T" prefWidth="75.0" text="Дом"/>
+                                                <TableColumn fx:id="_hov_worker_T" prefWidth="75.0" text="Работник"/>
+                                            </columns>
+                                        </TableView>
+                                    </items>
+                                </SplitPane>
+                            </TitledPane>
+                            <TitledPane animated="false" text = "Запросы из выбранного дома" >
+                                <SplitPane dividerPositions="0.5" prefHeight="460.0" prefWidth="200.0">
+                                    <items>
+                                        <VBox prefHeight="460.0" prefWidth="100.0" spacing="5.0">
+                                            <children>
+                                                <TextField fx:id="_rq_cause" promptText="Причина"/>
+                                                <TextField fx:id="_rq_answer" promptText="Ответ"/>
+                                                <DatePicker fx:id="_rq_date_request" promptText="Дата запроса"/>
+                                                <DatePicker fx:id="_rq_date_answer" promptText="Дата ответа"/>
+                                                <ComboBox fx:id = "_rq_req_rt" promptText="Способ запроса"/>
+                                                <ComboBox fx:id = "_rq_req_at" promptText="Способ ответа"/>
+                                                <ComboBox fx:id = "_rq_req_worker" promptText="Работник"/>
+                                                <ComboBox fx:id = "_rq_req_citizen" promptText="Житель"/>
+                                                <Button mnemonicParsing="false" onAction="#_rq_onClickAdd" text="Добавить запрос" />
+                                                <Button mnemonicParsing="false" onAction="#_rq_onClickChange" text="Изменить запрос" />
+                                                <Button mnemonicParsing="false" onAction="#_rq_onClickDelete" text="Удалить запрос" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </VBox>
+                                        <TableView fx:id="_rq_table" editable="true" onMouseClicked="#_rq_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                                <!--<TableColumn fx:id="_rq_id_T" prefWidth="75.0" text="№" />-->
+                                                <TableColumn fx:id="_rq_cause_T" prefWidth="75.0" text="Причина" />
+                                                <TableColumn fx:id="_rq_answer_T" prefWidth="75.0" text="Ответ" />
+                                                <TableColumn fx:id="_rq_date_request_T" prefWidth="75.0" text="Дата запроса" />
+                                                <TableColumn fx:id="_rq_date_answer_T" prefWidth="75.0" text="Дата ответа" />
+                                                <TableColumn fx:id="_rq_req_rt_T" prefWidth="75.0" text="Способ запроса" />
+                                                <TableColumn fx:id="_rq_req_at_T" prefWidth="75.0" text="Способ ответа"/>
+                                                <TableColumn fx:id="_rq_req_worker_T" prefWidth="75.0" text="Работник" />
+                                                <TableColumn fx:id="_rq_req_citizen_T" prefWidth="75.0" text="Житель"/>
+                                                <TableColumn fx:id="_rq_req_flat_T" prefWidth="75.0" text="Квартира"/>
+                                                <TableColumn fx:id="_rq_req_house_T" prefWidth="75.0" text="Адрес"/>
+                                            </columns>
+                                        </TableView>
+                                    </items>
+                                </SplitPane>
+                            </TitledPane>
+                            <TitledPane animated="false" text="Ремонты выбранного дома">
+                                <content>
+                                    <SplitPane dividerPositions="0.5" prefHeight="260.0" prefWidth="200.0">
+                                        <items>
+                                            <VBox prefHeight="260.0" prefWidth="100.0" spacing="5.0">
+                                                <children>
+                                                    <CheckBox fx:id="_re_type" text = "Капитальность ремонта"/>
+                                                    <DatePicker fx:id="_re_date" promptText="Дата ремонта"/>
+                                                    <ComboBox fx:id = "_re_house" promptText="Адрес"/>
+                                                    <Button mnemonicParsing="false" onAction="#_re_onClickAdd" text="Добавить ремонт" />
+                                                    <Button mnemonicParsing="false" onAction="#_re_onClickChange" text="Изменить ремонт" />
+                                                    <Button mnemonicParsing="false" onAction="#_re_onClickDelete" text="Удалить ремонт" />
+                                                </children>
+                                                <padding>
+                                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                </padding>
+                                            </VBox>
+                                            <TableView fx:id="_re_table" editable="true" onMouseClicked="#_re_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                                                <columns>
+                                                    <!--<TableColumn fx:id="re_id_T" prefWidth="75.0" text="№" />-->
+                                                    <TableColumn fx:id="_re_type_T" prefWidth="152.0" text="Капитальность ремонта" />
+                                                    <TableColumn fx:id="_re_date_T" prefWidth="90.0" text="Дата" />
+                                                    <TableColumn fx:id="_re_house_T" prefWidth="152.0" text="Адрес" />
+                                                </columns>
+                                            </TableView>
+                                        </items>
+                                    </SplitPane>
+                                </content>
+                            </TitledPane>
+                        </panes>
+                    </Accordion>
+                </children>
+                <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                </padding>
+            </VBox>
+
+        </Tab>
+        <Tab text = "Жители" onSelectionChanged="#onSelectionCT">
+            <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                <items>
+                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                        <children>
+                            <TextField fx:id="ci_lname" promptText="Фамилия"/>
+                            <TextField fx:id="ci_fname" promptText="Имя"/>
+                            <TextField fx:id="ci_mname" promptText="Отчество"/>
+                            <TextField fx:id="ci_sex" promptText="Пол"/>
+                            <DatePicker fx:id="ci_birthdate"/>
+                            <TextField fx:id="ci_percent" promptText="Доля в квартире"/>
+                            <TextField fx:id="ci_town" promptText="Город рождения"/>
+                            <ComboBox fx:id = "ci_flat" promptText="Квартира"/>
+                            <Button mnemonicParsing="false" onAction="#ci_onClickAdd" text="Добавить жителя" />
+                            <Button mnemonicParsing="false" onAction="#ci_onClickChange" text="Изменить жителя" />
+                            <Button mnemonicParsing="false" onAction="#ci_onClickDelete" text="Удалить жителя" />
+                        </children>
+                        <padding>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                    </VBox>
+                    <TableView fx:id="ci_table" editable="true" onMouseClicked="#ci_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                        <columns>
+                            <!--<TableColumn fx:id="ci_id_T" prefWidth="75.0" text="№" />-->
+                            <TableColumn fx:id="ci_lname_T" prefWidth="75.0" text="Фамилия" />
+                            <TableColumn fx:id="ci_fname_T" prefWidth="75.0" text="Имя" />
+                            <TableColumn fx:id="ci_mname_T" prefWidth="75.0" text="Отчество" />
+                            <TableColumn fx:id="ci_sex_T" prefWidth="75.0" text="Пол"/>
+                            <TableColumn fx:id="ci_birthdate_T" prefWidth="75.0" text="Дата рождения"/>
+                            <TableColumn fx:id="ci_percent_T" prefWidth="75.0" text="Процент владения"/>
+                            <TableColumn fx:id="ci_town_T" prefWidth="75.0" text="Город рождения"/>
+                            <TableColumn fx:id="ci_flat_T" prefWidth="75.0" text="Квартира"/>
+                            <TableColumn fx:id="ci_house_T" prefWidth="75.0" text="Дом"/>
+                        </columns>
+                    </TableView>
+                </items>
+            </SplitPane>
+        </Tab>
+        <Tab text = "Запросы" onSelectionChanged="#onSelectionRT">
+            <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                <items>
+                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                        <children>
+                            <TextField fx:id="rq_cause" promptText="Причина"/>
+                            <TextField fx:id="rq_answer" promptText="Ответ"/>
+                            <DatePicker fx:id="rq_date_request" promptText="Дата запроса"/>
+                            <DatePicker fx:id="rq_date_answer" promptText="Дата ответа"/>
+                            <ComboBox fx:id = "rq_req_rt" promptText="Способ запроса"/>
+                            <ComboBox fx:id = "rq_req_at" promptText="Способ ответа"/>
+                            <ComboBox fx:id = "rq_req_worker" promptText="Работник"/>
+                            <ComboBox fx:id = "rq_req_citizen" promptText="Житель"/>
+                            <Button mnemonicParsing="false" onAction="#rq_onClickAdd" text="Добавить запрос" />
+                            <Button mnemonicParsing="false" onAction="#rq_onClickChange" text="Изменить запрос" />
+                            <Button mnemonicParsing="false" onAction="#rq_onClickDelete" text="Удалить запрос" />
+                        </children>
+                        <padding>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                    </VBox>
+                    <TableView fx:id="rq_table" editable="true" onMouseClicked="#rq_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                        <columns>
+                            <!--<TableColumn fx:id="rq_id_T" prefWidth="75.0" text="№" />-->
+                            <TableColumn fx:id="rq_cause_T" prefWidth="75.0" text="Причина" />
+                            <TableColumn fx:id="rq_answer_T" prefWidth="75.0" text="Ответ" />
+                            <TableColumn fx:id="rq_date_request_T" prefWidth="75.0" text="Дата запроса" />
+                            <TableColumn fx:id="rq_date_answer_T" prefWidth="75.0" text="Дата ответа" />
+                            <TableColumn fx:id="rq_req_rt_T" prefWidth="75.0" text="Способ запроса" />
+                            <TableColumn fx:id="rq_req_at_T" prefWidth="75.0" text="Способ ответа"/>
+                            <TableColumn fx:id="rq_req_worker_T" prefWidth="75.0" text="Работник" />
+                            <TableColumn fx:id="rq_req_citizen_T" prefWidth="75.0" text="Житель"/>
+                            <TableColumn fx:id="rq_req_flat_T" prefWidth="75.0" text="Квартира"/>
+                            <TableColumn fx:id="rq_req_house_T" prefWidth="75.0" text="Адрес"/>
+                        </columns>
+                    </TableView>
+                </items>
+            </SplitPane>
+        </Tab>
+        <Tab text = "Осмотры коммуникаций" onSelectionChanged="#onSelectionCOT">
+            <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                <items>
+                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                        <children>
+                            <TextField fx:id="cov_rating" promptText="Рейтинг"/>
+                            <DatePicker fx:id="cov_date" promptText="Дата осмотра"/>
+                            <ComboBox fx:id = "cov_communication" promptText="Коммуникация"/>
+                            <ComboBox fx:id = "cov_worker" promptText="Работник"/>
+                            <Button mnemonicParsing="false" onAction="#cov_onClickAdd" text="Добавить осмотр" />
+                            <Button mnemonicParsing="false" onAction="#cov_onClickChange" text="Изменить осмотр" />
+                            <Button mnemonicParsing="false" onAction="#cov_onClickDelete" text="Удалить осмотр" />
+                        </children>
+                        <padding>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                    </VBox>
+                    <TableView fx:id="cov_table" editable="true" onMouseClicked="#cov_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                        <columns>
+                            <!--<TableColumn fx:id="cov_id_T" prefWidth="75.0" text="№" />-->
+                            <TableColumn fx:id="cov_rating_T" prefWidth="75.0" text="Рейтинг" />
+                            <TableColumn fx:id="cov_date_T" prefWidth="75.0" text="Дата осмотра" />
+                            <TableColumn fx:id="cov_communication_T" prefWidth="75.0" text="Коммуникация" />
+                            <TableColumn fx:id="cov_house_T" prefWidth="75.0" text="Дом"/>
+                            <TableColumn fx:id="cov_worker_T" prefWidth="75.0" text="Работник"/>
+                        </columns>
+                    </TableView>
+                </items>
+            </SplitPane>
+        </Tab>
+        <Tab text = "Осмотры домов" onSelectionChanged="#onSelectionHOT">
+            <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                <items>
+                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                        <children>
+                            <TextField fx:id="hov_rating" promptText="Рейтинг"/>
+                            <DatePicker fx:id="hov_date" promptText="Дата осмотра"/>
+                            <ComboBox fx:id = "hov_house" promptText="Дом"/>
+                            <ComboBox fx:id = "hov_worker" promptText="Работник"/>
+                            <Button mnemonicParsing="false" onAction="#hov_onClickAdd" text="Добавить осмотр" />
+                            <Button mnemonicParsing="false" onAction="#hov_onClickChange" text="Изменить осмотр" />
+                            <Button mnemonicParsing="false" onAction="#hov_onClickDelete" text="Удалить осмотр" />
+                        </children>
+                        <padding>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                    </VBox>
+                    <TableView fx:id="hov_table" editable="true" onMouseClicked="#hov_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                        <columns>
+                            <!--<TableColumn fx:id="hov_id_T" prefWidth="75.0" text="№" />-->
+                            <TableColumn fx:id="hov_rating_T" prefWidth="75.0" text="Рейтинг" />
+                            <TableColumn fx:id="hov_date_T" prefWidth="75.0" text="Дата осмотра" />
+                            <TableColumn fx:id="hov_house_T" prefWidth="75.0" text="Дом"/>
+                            <TableColumn fx:id="hov_worker_T" prefWidth="75.0" text="Работник"/>
+                        </columns>
+                    </TableView>
+                </items>
+            </SplitPane>
+        </Tab>
+        <Tab onSelectionChanged="#onSelectionHT" text="Работа со справочными таблицами">
+            <content>
+                <Accordion>
+                    <panes>
+
+                        <TitledPane animated="false" text="Должности">
+                            <content>
+                                <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                    <items>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                            <children>
+                                                <TextField fx:id="po_name" promptText="Название должности" />
+                                                <Button mnemonicParsing="false" onAction="#po_onClickAdd" text="Добавить должность" />
+                                                <Button mnemonicParsing="false" onAction="#po_onClickChange" text="Изменить должность" />
+                                                <Button mnemonicParsing="false" onAction="#po_onClickDelete" text="Удалить должность" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </VBox>
+                                        <TableView fx:id="po_table" editable="true" onMouseClicked="#po_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                                <!--
+                                                <TableColumn fx:id="po_id_T" prefWidth="75.0" text="№" />
+                                                -->
+                                                <TableColumn fx:id="po_name_T" prefWidth="322.0" text="Название должности" />
+                                            </columns>
+                                        </TableView>
+                                    </items>
+                                </SplitPane>
+                            </content>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Способы ответа">
+                            <content>
+                                <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                    <items>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                            <children>
+                                                <TextField fx:id="at_name" promptText="Название способа ответа" />
+                                                <Button mnemonicParsing="false" onAction="#at_onClickAdd" text="Добавить способ ответа" />
+                                                <Button mnemonicParsing="false" onAction="#at_onClickChange" text="Изменить способ ответа" />
+                                                <Button mnemonicParsing="false" onAction="#at_onClickDelete" text="Удалить способ ответа" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </VBox>
+                                        <TableView fx:id="at_table" editable="true" onMouseClicked="#at_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                                <!--<TableColumn fx:id="at_id_T" prefWidth="75.0" text="№" />-->
+                                                <TableColumn fx:id="at_name_T" prefWidth="322.0" text="Название способа ответа" />
+                                            </columns>
+                                        </TableView>
+                                    </items>
+                                </SplitPane>
+                            </content>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Способы запроса">
+                            <content>
+                                <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                    <items>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                            <children>
+                                                <TextField fx:id="rt_name" promptText="Название способа запроса" />
+                                                <Button mnemonicParsing="false" onAction="#rt_onClickAdd" text="Добавить способ запроса" />
+                                                <Button mnemonicParsing="false" onAction="#rt_onClickChange" text="Изменить способ запроса" />
+                                                <Button mnemonicParsing="false" onAction="#rt_onClickDelete" text="Удалить способ запроса" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </VBox>
+                                        <TableView fx:id="rt_table" editable="true" onMouseClicked="#rt_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                                <!--<TableColumn fx:id="rt_id_T" prefWidth="75.0" text="№" />-->
+                                                <TableColumn fx:id="rt_name_T" prefWidth="322.0" text="Название способа запроса" />
+                                            </columns>
+                                        </TableView>
+                                    </items>
+                                </SplitPane>
+                            </content>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Виды коммуникации">
+                            <content>
+                                <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                    <items>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                            <children>
+                                                <TextField fx:id="ct_name" promptText="Название вида коммуникации" />
+                                                <Button mnemonicParsing="false" onAction="#ct_onClickAdd" text="Добавить вид коммуникации" />
+                                                <Button mnemonicParsing="false" onAction="#ct_onClickChange" text="Изменить вид коммуникации" />
+                                                <Button mnemonicParsing="false" onAction="#ct_onClickDelete" text="Удалить вид коммуникации" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </VBox>
+                                        <TableView fx:id="ct_table" editable="true" onMouseClicked="#ct_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                                <!--<TableColumn fx:id="ct_id_T" prefWidth="75.0" text="№" />-->
+                                                <TableColumn fx:id="ct_name_T" prefWidth="322.0" text="Название вида коммуникации" />
+                                            </columns>
+                                        </TableView>
+                                    </items>
+                                </SplitPane>
+                            </content>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Дома">
+                            <content>
+                                <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                    <items>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                            <children>
+                                                <TextField fx:id="hs_name" promptText="Адрес" />
+                                                <Button mnemonicParsing="false" onAction="#hs_onClickAdd" text="Добавить дом" />
+                                                <Button mnemonicParsing="false" onAction="#hs_onClickChange" text="Изменить дом" />
+                                                <Button mnemonicParsing="false" onAction="#hs_onClickDelete" text="Удалить дом" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </VBox>
+                                        <TableView fx:id="hs_table" editable="true" onMouseClicked="#hs_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                                <!--<TableColumn fx:id="hs_id_T" prefWidth="75.0" text="№" />-->
+                                                <TableColumn fx:id="hs_name_T" prefWidth="322.0" text="Адрес" />
+                                            </columns>
+                                        </TableView>
+                                    </items>
+                                </SplitPane>
+                            </content>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Ремонты">
+                            <content>
+                                <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                    <items>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                            <children>
+                                                <CheckBox fx:id="re_type" text = "Капитальность ремонта"/>
+                                                <DatePicker fx:id="re_date" promptText="Дата ремонта"/>
+                                                <ComboBox fx:id = "re_house" promptText="Адрес"/>
+                                                <Button mnemonicParsing="false" onAction="#re_onClickAdd" text="Добавить ремонт" />
+                                                <Button mnemonicParsing="false" onAction="#re_onClickChange" text="Изменить ремонт" />
+                                                <Button mnemonicParsing="false" onAction="#re_onClickDelete" text="Удалить ремонт" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </VBox>
+                                        <TableView fx:id="re_table" editable="true" onMouseClicked="#re_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                                <!--<TableColumn fx:id="re_id_T" prefWidth="75.0" text="№" />-->
+                                                <TableColumn fx:id="re_type_T" prefWidth="152.0" text="Капитальность ремонта" />
+                                                <TableColumn fx:id="re_date_T" prefWidth="90.0" text="Дата" />
+                                                <TableColumn fx:id="re_house_T" prefWidth="152.0" text="Адрес" />
+                                            </columns>
+                                        </TableView>
+                                    </items>
+                                </SplitPane>
+                            </content>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Квартиры">
+                            <content>
+                                <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                    <items>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                            <children>
+                                                <TextField fx:id="fl_number" promptText = "Номер квартиры"/>
+                                                <CheckBox fx:id="fl_opinion" text = "Одобрение ремонта"/>
+                                                <DatePicker fx:id="fl_date" promptText="Дата последней перепланировки"/>
+                                                <ComboBox fx:id = "fl_house" promptText="Адрес"/>
+                                                <Button mnemonicParsing="false" onAction="#fl_onClickAdd" text="Добавить квартиру" />
+                                                <Button mnemonicParsing="false" onAction="#fl_onClickChange" text="Изменить квартиру" />
+                                                <Button mnemonicParsing="false" onAction="#fl_onClickDelete" text="Удалить квартиру" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </VBox>
+                                        <TableView fx:id="fl_table" editable="true" onMouseClicked="#fl_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                                <!--<TableColumn fx:id="fl_id_T" prefWidth="75.0" text="№" />-->
+                                                <TableColumn fx:id="fl_number_T" prefWidth="75.0" text="Номер квартиры" />
+                                                <TableColumn fx:id="fl_opinion_T" prefWidth="152.0" text="Одобрение ремонта" />
+                                                <TableColumn fx:id="fl_date_T" prefWidth="90.0" text="Дата последней перепланировки" />
+                                                <TableColumn fx:id="fl_house_T" prefWidth="152.0" text="Адрес"/>
+                                            </columns>
+                                        </TableView>
+                                    </items>
+                                </SplitPane>
+                            </content>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Коммуникации">
+                            <content>
+                                <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                    <items>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                            <children>
+                                                <DatePicker fx:id="co_date" promptText="Дата ремонта"/>
+                                                <ComboBox fx:id = "co_comtype" promptText="Вид коммуникации"/>
+                                                <ComboBox fx:id = "co_house" promptText="Адрес"/>
+                                                <Button mnemonicParsing="false" onAction="#co_onClickAdd" text="Добавить коммуникацию" />
+                                                <Button mnemonicParsing="false" onAction="#co_onClickChange" text="Изменить коммуникацию" />
+                                                <Button mnemonicParsing="false" onAction="#co_onClickDelete" text="Удалить коммуникацию" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </VBox>
+                                        <TableView fx:id="co_table" editable="true" onMouseClicked="#co_onClickTableSelect" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                                <!--<TableColumn fx:id="co_id_T" prefWidth="75.0" text="№" />-->
+                                                <TableColumn fx:id="co_date_T" prefWidth="90.0" text="Дата последнего ремонта" />
+                                                <TableColumn fx:id="co_comtype_T" prefWidth="152.0" text="Вид коммуникации" />
+                                                <TableColumn fx:id="co_house_T" prefWidth="152.0" text="Адрес" />
+                                            </columns>
+                                        </TableView>
+                                    </items>
+                                </SplitPane>
+                            </content>
+                        </TitledPane>
+                    </panes>
+                </Accordion>
+            </content>
+        </Tab>
+        <Tab text="Отчёты">
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                <children>
+                    <Button mnemonicParsing="false" onAction="#worker_report" text="Сгенерировать отчёт по количеству осмотров и обработанных запросов для работников" />
+                    <Button mnemonicParsing="false" onAction="#house_report" text="Сгенерировать отчёт по количеству ремонтов и исходящих запросов для домов" />
+                </children>
+                <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                </padding>
+            </VBox>
+        </Tab>
+    </tabs>
+</TabPane>
+
